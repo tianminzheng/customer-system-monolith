@@ -23,6 +23,5 @@ logs/
 *.lnk
 pom.xml.versionsBackup
 .idea
-docker
 /docs/
 
