@@ -1,0 +1,12 @@
+
+GET localhost:10001/customerStaffs/beijing/
+Content-Type: application/json
+
+###
+
+
+
+GET localhost:10001/customerStaffs/beijing/updated?updatedTime=1668830509000
+Content-Type: application/json
+
+###

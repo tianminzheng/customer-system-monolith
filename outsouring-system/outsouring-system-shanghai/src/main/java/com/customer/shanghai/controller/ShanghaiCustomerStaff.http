@@ -1,0 +1,22 @@
+
+GET localhost:10002/customerStaffs/shanghai/
+Content-Type: application/json
+
+###
+
+
+
+GET localhost:10002/customerStaffs/shanghai/updated?updatedTime=1668830509000
+Content-Type: application/json
+
+###
+
+POST localhost:10002/customerStaffs/shanghai/
+Content-Type: application/json
+
+{
+  "nickname" : "tianyalan",
+  "gender" : "MALE"
+}
+
+###

@@ -1,0 +1,54 @@
+
+POST localhost:8081/reactive/customerStaffs/
+Content-Type: application/json
+
+{
+  "id" : "2",
+  "groupId" : "1",
+  "accountId" : "100",
+  "staffName" : "tianyalan3",
+  "nickname" : "tianyalan3",
+  "status" : "ONLINE",
+  "avatar" : "1.jpg",
+  "phone" : "13355667789",
+  "gender" : "MALE",
+  "goodAt" : "擅长",
+  "welcomeMessage" : "你好，我是天涯兰",
+  "remark" : "这是客服天涯兰"
+}
+
+#####
+
+PUT localhost:8081/reactive/customerStaffs/
+Content-Type: application/json
+
+
+{
+  "id" : "2",
+  "groupId" : "1",
+  "nickname" : "tianyalan",
+  "avatar" : "1.jpg",
+  "goodAt" : "擅长2",
+  "status" : "OFFLINE",
+  "welcomeMessage" : "你好，我是天涯兰",
+  "remark" : "remark"
+}
+
+###
+
+GET localhost:8081/reactive/customerStaffs/1
+Content-Type: application/json
+
+###
+
+
+GET localhost:8081/reactive/customerStaffs/
+Content-Type: application/json
+
+###
+
+
+DELETE localhost:8081/reactive/customerStaffs/1
+Content-Type: application/json
+
+###

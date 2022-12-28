@@ -1,0 +1,18 @@
+server:
+  port: 10003
+
+spring:
+  application:
+    name: outsourcing_system_hangzhou
+
+---
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/customer_hangzhou?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect

@@ -1,0 +1,15 @@
+
+###
+
+GET localhost:8081/hypermedia/customerStaffs/5
+Content-Type: application/json
+
+###
+
+
+###
+
+GET localhost:8081/hypermedia/customerStaffs/
+Content-Type: application/json
+
+###

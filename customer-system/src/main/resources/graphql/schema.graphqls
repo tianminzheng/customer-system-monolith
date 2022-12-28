@@ -1,0 +1,24 @@
+schema {
+    query : Query
+}
+
+type Query {
+    staffs: [CustomerStaff]
+    staff(id: Int): CustomerStaff
+}
+
+type CustomerStaff {
+    id: Int
+    staffName: String
+    nickname: String
+    phone: String
+    goodAt: String
+    remark: String
+    group: CustomerGroup
+}
+
+type CustomerGroup {
+   id: Int
+   groupName: String
+   groupDescription: String
+}

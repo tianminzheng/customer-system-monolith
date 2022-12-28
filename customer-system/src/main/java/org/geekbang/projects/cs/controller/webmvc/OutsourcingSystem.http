@@ -1,0 +1,30 @@
+
+POST localhost:8081/outsourcingSystems/
+Content-Type: application/json
+
+{
+  "systemName" : "杭州客服中心",
+  "description" : "这是位于杭州的客服中心",
+  "systemUrl" : "localhost:10003/customerStaffs/hangzhou/",
+  "appId" : "杭州",
+  "appKey" : "appKey_hangzhou",
+  "appSecret" : "appSecret_hangzhou"
+}
+
+###
+
+GET localhost:8081/outsourcingSystems/1
+Content-Type: application/json
+
+###
+
+
+GET localhost:8081/outsourcingSystems/page/2/1
+Content-Type: application/json
+
+###
+
+DELETE localhost:8081/outsourcingSystems/1
+Content-Type: application/json
+
+###

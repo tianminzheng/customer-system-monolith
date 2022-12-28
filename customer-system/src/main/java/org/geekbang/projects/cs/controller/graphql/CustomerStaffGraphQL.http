@@ -1,0 +1,31 @@
+
+
+POST localhost:8081/query/
+Content-Type: application/json
+
+{
+  staff(id: 1) {
+    staffName
+    nickname
+    phone
+  }
+}
+
+###
+
+
+POST localhost:8081/query/
+Content-Type: application/json
+
+{
+  staffs {
+    staffName
+    nickname
+    phone
+    group {
+      groupName
+    }
+  }
+}
+
+###
