@@ -43,6 +43,16 @@ mybatis-plus:
       # 逻辑删除字面值：删除为1
       logic-delete-value: 1
 
+xxl:
+  job:
+    accessToken: default_token
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin
+    executor:
+      appname: customer-system
+      logpath: D:/xxl-job-executor/logs
+      logretentiondays: 30
+
 ---
 spring:
   boot:
