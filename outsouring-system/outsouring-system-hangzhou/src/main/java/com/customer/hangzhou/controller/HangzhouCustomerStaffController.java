@@ -43,7 +43,7 @@ public class HangzhouCustomerStaffController {
     }
 
     @GetMapping("/")
-    public Result<HangzhouCustomerStaffRespVO> getAllCustomerStaffs() {
+    public Result<List<HangzhouCustomerStaffRespVO>> getAllCustomerStaffs() {
         List<HangzhouCustomerStaff> customerStaffs = customerStaffService.findAllCustomerStaffs();
 
         return Result.success(HangzhouCustomerStaffConverter.INSTANCE.convertListResp(customerStaffs));

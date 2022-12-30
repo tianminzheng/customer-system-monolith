@@ -31,6 +31,11 @@ public class OutsourcingSystem implements Serializable {
     private String systemName;
 
     /**
+     * 系统编码
+     */
+    private String systemCode;
+
+    /**
      * 系统描述
      */
     private String description;

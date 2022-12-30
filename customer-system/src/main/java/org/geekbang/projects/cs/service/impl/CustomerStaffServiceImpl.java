@@ -12,6 +12,7 @@ import org.geekbang.projects.cs.integration.OutsourcingSystemClient;
 import org.geekbang.projects.cs.mapper.CustomerStaffMapper;
 import org.geekbang.projects.cs.service.ICustomerStaffService;
 import org.geekbang.projects.cs.service.IOutsourcingSystemService;
+import org.geekbang.projects.cs.servicebus.endpoint.CustomerStaffEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Autowired
     OutsourcingSystemClient outsourcingSystemClient;
+
+    @Autowired
+    CustomerStaffEndpoint customerStaffEndpoint;
 
     @Override
     public PageObject<CustomerStaff> findCustomerStaffs(Long pageSize, Long pageIndex) {
@@ -103,9 +107,12 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
         OutsourcingSystem outsourcingSystem = outsourcingSystemService.findOutsourcingSystemById(systemId);
 
         //根据租户远程获取客服信息
-        List<CustomerStaff> customerStaffs = outsourcingSystemClient.getCustomerStaffs(outsourcingSystem);
+//        List<CustomerStaff> customerStaffs = outsourcingSystemClient.getCustomerStaffs(outsourcingSystem);
+
+
+        List<CustomerStaff> customerStaffs = customerStaffEndpoint.fetchCustomerStaffs(outsourcingSystem);
 
         //保存客服信息
-        this.saveBatch(customerStaffs);
+        saveOrUpdateBatch(customerStaffs);
     }
 }
