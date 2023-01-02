@@ -2,7 +2,7 @@ package org.geekbang.projects.cs.metrics;
 
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 
-public class CustomerStaffCount {
+public class CustomerStaffCounter {
 
     private static SimpleMeterRegistry registry = new SimpleMeterRegistry();
 
