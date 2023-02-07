@@ -1,4 +1,4 @@
-CREATE TABLE `beijing_customer_staff` (
+CREATE TABLE `hangzhou_customer_staff` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `nickname` varchar(45) NOT NULL COMMENT '昵称',
   `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
@@ -10,4 +10,4 @@ CREATE TABLE `beijing_customer_staff` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='北京外包客服人员表'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='杭州外包客服人员表'
