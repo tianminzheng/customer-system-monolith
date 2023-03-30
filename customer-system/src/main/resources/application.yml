@@ -29,7 +29,7 @@ spring:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://127.0.0.1:3306/customer_system?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
           username: root
-          password: root
+          password: 12345678
 mybatis-plus:
   mapper-locations: classpath:mapperXml/*.xml
   configuration:
@@ -43,15 +43,15 @@ mybatis-plus:
       # 逻辑删除字面值：删除为1
       logic-delete-value: 1
 
-xxl:
-  job:
-    accessToken: default_token
-    admin:
-      addresses: http://localhost:8080/xxl-job-admin
-    executor:
-      appname: customer-system
-      logpath: D:/xxl-job-executor/logs
-      logretentiondays: 30
+#xxl:
+#  job:
+#    accessToken: default_token
+#    admin:
+#      addresses: http://localhost:8080/xxl-job-admin
+#    executor:
+#      appname: customer-system
+#      logpath: D:/xxl-job-executor/logs
+#      logretentiondays: 30
 
 ---
 spring:

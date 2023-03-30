@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, CustomerStaff> implements ICustomerStaffService {
@@ -76,8 +77,10 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public Boolean createCustomerStaff(CustomerStaff customerStaff) throws BizException {
-
-        return this.save(customerStaff);
+        //TODO Mock
+        customerStaff.setId(ThreadLocalRandom.current().nextLong(1,100000));
+        return true;
+//        return this.save(customerStaff);
     }
 
     @Override
