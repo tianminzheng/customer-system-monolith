@@ -13,6 +13,7 @@
 		<module>outsouring-system</module>
         <module>cs-infrastructure-utility</module>
         <module>cs-admin-server</module>
+        <module>customer-system-basic</module>
     </modules>
 
     <properties>
