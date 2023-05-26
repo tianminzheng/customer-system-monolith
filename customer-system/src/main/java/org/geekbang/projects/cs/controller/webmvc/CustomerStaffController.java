@@ -12,14 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping("/customerStaffs")
 public class CustomerStaffController {
 
-    @Autowired
-    ICustomerStaffService customerStaffService;
+    @Resource
+    private ICustomerStaffService customerStaffService;
 
     //新增CustomerStaff
     @PostMapping("/")

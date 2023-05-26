@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, CustomerStaff> implements ICustomerStaffService {
@@ -53,7 +54,7 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
         LambdaQueryWrapper<CustomerStaff> queryWrapper = new LambdaQueryWrapper<>();
 //        queryWrapper.eq(CustomerStaff::getIsDeleted, false);
 
-        if(!Objects.isNull(staffName)) {
+        if (!Objects.isNull(staffName)) {
             queryWrapper.like(CustomerStaff::getStaffName, staffName);
         }
         queryWrapper.orderByDesc(CustomerStaff::getCreateTime);
@@ -70,20 +71,28 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public CustomerStaff findCustomerStaffById(Long staffId) {
-
-        return baseMapper.selectById(staffId);
+        //TODO impl
+//        return baseMapper.selectById(staffId);
+        CustomerStaff staff = new CustomerStaff();
+        Long id = ThreadLocalRandom.current().nextLong(1, 10000);
+        staff.setId(id);
+        staff.setStaffName("Staff-" + id);
+        return staff;
     }
 
     @Override
     public Boolean createCustomerStaff(CustomerStaff customerStaff) throws BizException {
-
-        return this.save(customerStaff);
+        //TODO impl
+        customerStaff.setId(ThreadLocalRandom.current().nextLong(1, 100000));
+        return true;
+//        return this.save(customerStaff);
     }
 
     @Override
     public Boolean updateCustomerStaff(CustomerStaff customerStaff) {
-
-        return this.updateById(customerStaff);
+        //TODO impl
+//        return this.updateById(customerStaff);
+        return true;
     }
 
     @Override
@@ -97,7 +106,9 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 //        return updateById(customerStaff);
 
         //通过逻辑删除为来进行逻辑删除
-        return this.removeById(staffId);
+        //TODO impl
+//        return this.removeById(staffId);
+        return true;
     }
 
     @Override
