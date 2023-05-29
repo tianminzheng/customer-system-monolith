@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class JdbcDemo {
     public static void main(String[] args) throws Exception {
-        //1. 注册数据库驱动
+        //1. 注册数据库驱动/创建数据源DataSource
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        //2. 创建数据库连接
+        //2. 创建数据库连接Connection
         Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/customer_system?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai", "root", "12345678");
 
-        //3. 创建语句
+        //3. 创建执行语句Statement
         String sql = " select * from `customer_group` ";
         PreparedStatement stmt = conn.prepareStatement(sql);
 
@@ -41,7 +41,7 @@ public class JdbcDemo {
         }
         System.out.println("CustomerGroup: " + customerGroups);
 
-        //6. 释放资源
+        //6. 释放资源对象
         resultSet.close();
         stmt.close();
         conn.close();
