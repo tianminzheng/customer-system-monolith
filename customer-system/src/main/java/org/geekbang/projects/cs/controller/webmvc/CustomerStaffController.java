@@ -8,7 +8,6 @@ import org.geekbang.projects.cs.entity.staff.CustomerStaff;
 import org.geekbang.projects.cs.infrastructure.page.PageObject;
 import org.geekbang.projects.cs.infrastructure.vo.Result;
 import org.geekbang.projects.cs.service.ICustomerStaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.async.WebAsyncTask;
 
@@ -68,42 +67,37 @@ public class CustomerStaffController {
 
     @GetMapping("/async/{staffId}")
     public WebAsyncTask<CustomerStaffRespVO> asyncFindCustomerStaffById(@PathVariable("staffId") Long staffId) {
-
-        System.out.println("The main Thread name is" + Thread.currentThread().getName());
+        //打印请求接收线程
+        System.out.println("The Request Receiver Thread is : " + Thread.currentThread().getName());
 
         //启动一个异步Web任务
-        WebAsyncTask<CustomerStaffRespVO> task = new WebAsyncTask<CustomerStaffRespVO>(5 * 1000L, () -> {
-            System.out.println("The working Thread name is" + Thread.currentThread().getName());
-
-            Thread.sleep(10 * 1000L);
+        WebAsyncTask<CustomerStaffRespVO> task = new WebAsyncTask<CustomerStaffRespVO>(2 * 1000L, () -> {
+            //打印请求处理线程
+            System.out.println("The Worker Thread is: " + Thread.currentThread().getName());
 
             CustomerStaff customerStaff = customerStaffService.findCustomerStaffById(staffId);
 
-            CustomerStaffRespVO customerStaffRespVO = CustomerStaffConverter.INSTANCE.convertResp(customerStaff);
-            return customerStaffRespVO;
+            return CustomerStaffConverter.INSTANCE.convertResp(customerStaff);
         });
 
-        //任务超时设置：添加类似熔断的效果
-        task.onTimeout( () -> {
-            System.out.println(Thread.currentThread().getName());
-            System.out.println("Timeout");
+        //设置任务执行成功回调
+        task.onCompletion(() -> System.out.println("Task Finished! Thread: " + Thread.currentThread().getName()));
 
+        //设置任务超时回调,可以实现类似熔断的效果,返回降级的结果
+        task.onTimeout(() -> {
+            System.out.println("Task Timeout! Thread: " + Thread.currentThread().getName());
             return new CustomerStaffRespVO();
         });
 
-        //任务完成时的执行效果
-        task.onCompletion(() -> {
-            System.out.println("Finished");
-        });
 
-        //任务执行异常时
+        //设置任务执行异常回调
         task.onError(() -> {
-            System.out.println("Error");
+            System.out.println("Task Exec Error! Thread: " + Thread.currentThread().getName());
             return new CustomerStaffRespVO();
         });
 
-        //可以继续执行其他操作
-        System.out.println("Task继续执行中");
+        //请求接受线程继续执行
+        System.out.println("Request Receiver Thread Exec Next... Thread is: " + Thread.currentThread().getName());
 
         return task;
     }

@@ -1,5 +1,21 @@
 server:
-  port: 8080
+  port: 8001
+
+  #Undertow配置
+  undertow:
+    threads:
+      io: 4 #设置IO线程数
+      worker: 20 #设置Worker线程数
+    buffer-size: 1024 #设置缓冲器大小
+    direct-buffers: true #开启直接内存分配
+
+  tomcat:
+    connection-timeout: 10
+    threads:
+      min-spare: 10
+      max: 200
+    max-connections: 1
+    accept-count: 100
 
 management:
   endpoints:
