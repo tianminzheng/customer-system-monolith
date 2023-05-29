@@ -9,14 +9,6 @@ server:
     buffer-size: 1024 #设置缓冲器大小
     direct-buffers: true #开启直接内存分配
 
-  tomcat:
-    connection-timeout: 10
-    threads:
-      min-spare: 10
-      max: 200
-    max-connections: 1
-    accept-count: 100
-
 management:
   endpoints:
     web:
@@ -66,7 +58,7 @@ xxl:
       addresses: http://localhost:8080/xxl-job-admin
     executor:
       appname: customer-system
-      logpath: D:/xxl-job-executor/logs
+      logpath: /tmp/xxl-job-executor/logs
       logretentiondays: 30
 
 ---

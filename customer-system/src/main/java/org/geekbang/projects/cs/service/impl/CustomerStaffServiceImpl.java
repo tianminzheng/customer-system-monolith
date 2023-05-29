@@ -16,22 +16,22 @@ import org.geekbang.projects.cs.servicebus.endpoint.CustomerStaffEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, CustomerStaff> implements ICustomerStaffService {
 
 
-    @Autowired
-    IOutsourcingSystemService outsourcingSystemService;
+    @Resource
+    private IOutsourcingSystemService outsourcingSystemService;
+
+    @Resource
+    private OutsourcingSystemClient outsourcingSystemClient;
 
     @Autowired
-    OutsourcingSystemClient outsourcingSystemClient;
-
-    @Autowired
-    CustomerStaffEndpoint customerStaffEndpoint;
+    private CustomerStaffEndpoint customerStaffEndpoint;
 
     @Override
     public PageObject<CustomerStaff> findCustomerStaffs(Long pageSize, Long pageIndex) {
@@ -71,19 +71,13 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public CustomerStaff findCustomerStaffById(Long staffId) {
-        //TODO impl
-//        return baseMapper.selectById(staffId);
 
-//        int a = 1;
-//        int b = 0;
-//        int c = a / b;  //模拟任务异常
         try {
+//            int a = 1;
+//            int b = 0;
+//            int c = a / b;  //模拟任务异常
 //            Thread.sleep(5000L);  //模拟执行超时
-            CustomerStaff staff = new CustomerStaff();
-            Long id = ThreadLocalRandom.current().nextLong(1, 10000);
-            staff.setId(id);
-            staff.setStaffName("Staff-" + id);
-            return staff;
+            return baseMapper.selectById(staffId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -91,33 +85,26 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public Boolean createCustomerStaff(CustomerStaff customerStaff) throws BizException {
-        //TODO impl
-        customerStaff.setId(ThreadLocalRandom.current().nextLong(1, 100000));
-        return true;
-//        return this.save(customerStaff);
+        return save(customerStaff);
     }
 
     @Override
     public Boolean updateCustomerStaff(CustomerStaff customerStaff) {
-        //TODO impl
-//        return this.updateById(customerStaff);
-        return true;
+        return updateById(customerStaff);
     }
 
     @Override
     public Boolean deleteCustomerStaffById(Long staffId) {
-
-        //通过更新操作实现逻辑删除
-//        CustomerStaff customerStaff = new CustomerStaff();
-//        customerStaff.setId(staffId);
-//        customerStaff.setIsDeleted(true);
-//
-//        return updateById(customerStaff);
+//        CustomerStaff existed = getById(staffId);
+//        if (existed == null){
+//            return false;
+//        }
+//        //通过更新操作实现逻辑删除
+//        existed.setIsDeleted(true);
+//        return updateById(existed);
 
         //通过逻辑删除为来进行逻辑删除
-        //TODO impl
-//        return this.removeById(staffId);
-        return true;
+        return removeById(staffId);
     }
 
     @Override
