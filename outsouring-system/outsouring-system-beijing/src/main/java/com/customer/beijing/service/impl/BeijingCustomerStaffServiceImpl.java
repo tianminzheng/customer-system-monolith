@@ -3,15 +3,15 @@ package com.customer.beijing.service.impl;
 import com.customer.beijing.entity.BeijingCustomerStaff;
 import com.customer.beijing.repository.BeijingCustomerStaffRepository;
 import com.customer.beijing.service.BeijingCustomerStaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class BeijingCustomerStaffServiceImpl implements BeijingCustomerStaffService {
 
-    @Autowired
+    @Resource
     private BeijingCustomerStaffRepository customerStaffRepository;
 
     @Override

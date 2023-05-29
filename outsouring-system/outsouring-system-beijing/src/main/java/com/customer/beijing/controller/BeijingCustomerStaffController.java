@@ -8,10 +8,10 @@ import com.customer.beijing.entity.BeijingCustomerStaff;
 import com.customer.beijing.service.BeijingCustomerStaffService;
 import lombok.extern.slf4j.Slf4j;
 import org.geekbang.projects.cs.infrastructure.vo.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Slf4j
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/customerStaffs/beijing/")
 public class BeijingCustomerStaffController {
 
-    @Autowired
+    @Resource
     private BeijingCustomerStaffService customerStaffService;
 
     @PostMapping("/")
