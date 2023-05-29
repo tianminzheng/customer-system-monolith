@@ -11,6 +11,8 @@ import org.geekbang.projects.cs.servicebus.transformer.CustomerStaffTransformer;
 import org.geekbang.projects.cs.servicebus.transformer.CustomerStaffTransformerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +21,13 @@ public class CustomerStaffEndpointImpl implements CustomerStaffEndpoint {
 
     private CustomerStaffFilterChain customerStaffFilterChain;
 
-    public CustomerStaffEndpointImpl() {
-
+    @PostConstruct
+    public void init() {
         //初始化CustomerStaffFilterChain
         customerStaffFilterChain = new CustomerStaffFilterChain();
         customerStaffFilterChain.addFilter(new CustomerStaffEmptyFilter());
     }
+
 
     @Override
     public List<CustomerStaff> fetchCustomerStaffs(OutsourcingSystem outsourcingSystem) {
@@ -45,7 +48,7 @@ public class CustomerStaffEndpointImpl implements CustomerStaffEndpoint {
         List<CustomerStaff> finalCustomerStaffs = new ArrayList<>();
         customerStaffs.forEach(staff -> {
             CustomerStaff finalCustomerStaff = customerStaffFilterChain.execute(staff);
-            if(finalCustomerStaff != null) {
+            if (finalCustomerStaff != null) {
                 finalCustomerStaffs.add(finalCustomerStaff);
             }
         });
