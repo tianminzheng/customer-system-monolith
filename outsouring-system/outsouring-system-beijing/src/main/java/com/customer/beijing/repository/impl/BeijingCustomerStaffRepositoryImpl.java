@@ -5,6 +5,7 @@ import com.customer.beijing.repository.BeijingCustomerStaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,7 @@ import java.util.List;
 @Repository
 public class BeijingCustomerStaffRepositoryImpl implements BeijingCustomerStaffRepository {
 
-    @Autowired
+    @Resource
     private DataSource dataSource;
 
     @Override
@@ -111,6 +112,7 @@ public class BeijingCustomerStaffRepositoryImpl implements BeijingCustomerStaffR
         staff.setAvatar(resultSet.getString("avatar"));
         staff.setGoodAt(resultSet.getString("good_at"));
         staff.setRemark(resultSet.getString("remark"));
+        staff.setCreatedAt(resultSet.getDate("created_at"));
 
         return staff;
     }

@@ -3,15 +3,15 @@ package com.customer.shanghai.service.impl;
 import com.customer.shanghai.entity.ShanghaiCustomerStaff;
 import com.customer.shanghai.repository.ShanghaiCustomerStaffRepository;
 import com.customer.shanghai.service.ShanghaiCustomerStaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class ShanghaiCustomerStaffServiceImpl implements ShanghaiCustomerStaffService {
 
-    @Autowired
+    @Resource
     private ShanghaiCustomerStaffRepository customerStaffRepository;
 
     @Override
