@@ -73,11 +73,20 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
     public CustomerStaff findCustomerStaffById(Long staffId) {
         //TODO impl
 //        return baseMapper.selectById(staffId);
-        CustomerStaff staff = new CustomerStaff();
-        Long id = ThreadLocalRandom.current().nextLong(1, 10000);
-        staff.setId(id);
-        staff.setStaffName("Staff-" + id);
-        return staff;
+
+//        int a = 1;
+//        int b = 0;
+//        int c = a / b;  //模拟任务异常
+        try {
+//            Thread.sleep(5000L);  //模拟执行超时
+            CustomerStaff staff = new CustomerStaff();
+            Long id = ThreadLocalRandom.current().nextLong(1, 10000);
+            staff.setId(id);
+            staff.setStaffName("Staff-" + id);
+            return staff;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
