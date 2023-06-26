@@ -14,12 +14,12 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- 客服人员表
+ * 客服人员表
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("customer_staff")
+@TableName("customer_staff")    //关联数据库表名
 public class CustomerStaff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class CustomerStaff implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)  //关联主键,并设置主键生成策略
     private Long id;
 
     /**
@@ -98,7 +98,7 @@ public class CustomerStaff implements Serializable {
     /**
      * 是否删除，1=删除,0=未删除
      */
-    @TableLogic
+    @TableLogic //标识逻辑删除字段
     private Boolean isDeleted;
 
     /**
