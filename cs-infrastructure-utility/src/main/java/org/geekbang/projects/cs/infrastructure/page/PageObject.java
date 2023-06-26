@@ -19,10 +19,12 @@ public class PageObject<T> {
 
     private List<T> list;
 
-    public void buildPage(List<T> list, Long total, Long pageIndex, Long pageSize) {
-        this.list = list;
-        this.total = total;
-        this.pageIndex = pageIndex;
-        this.pageSize = pageSize;
+    public static <T> PageObject<T> buildPage(List<T> list, Long total, Long pageIndex, Long pageSize) {
+        PageObject<T> pageObject = new PageObject<>();
+        pageObject.setList(list);
+        pageObject.setTotal(total);
+        pageObject.setPageIndex(pageIndex);
+        return pageObject;
     }
+
 }

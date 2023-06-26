@@ -19,10 +19,7 @@ public class OursourcingSystemServiceImpl extends ServiceImpl<OutsourcingSystemM
 
         IPage<OutsourcingSystem> pagedResult = baseMapper.findPagedOutsourcingSystems(pageSize, pageIndex);
 
-        PageObject<OutsourcingSystem> pagedObject = new PageObject<>();
-        pagedObject.buildPage(pagedResult.getRecords(), pagedResult.getTotal(), pagedResult.getCurrent(), pagedResult.getSize());
-
-        return pagedObject;
+        return PageObject.buildPage(pagedResult.getRecords(), pagedResult.getTotal(), pagedResult.getCurrent(), pagedResult.getSize());
     }
 
     @Override

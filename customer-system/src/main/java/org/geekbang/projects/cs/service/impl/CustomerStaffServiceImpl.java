@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, CustomerStaff> implements ICustomerStaffService {
@@ -35,8 +34,9 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public PageObject<CustomerStaff> findCustomerStaffs(Long pageSize, Long pageIndex) {
-
-        return getCustomerStaffPageObject(null, pageSize, pageIndex);
+        LambdaQueryWrapper<CustomerStaff> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.orderByDesc(CustomerStaff::getCreateTime);
+        return getCustomerStaffPageObjectByWrapper(pageSize, pageIndex, queryWrapper);
     }
 
     @Override
@@ -47,25 +47,20 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 
     @Override
     public PageObject<CustomerStaff> findCustomerStaffsByName(String staffName, Long pageSize, Long pageIndex) {
-        return getCustomerStaffPageObject(staffName, pageSize, pageIndex);
+        LambdaQueryWrapper<CustomerStaff> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.like(CustomerStaff::getStaffName, staffName);
+        queryWrapper.orderByDesc(CustomerStaff::getCreateTime);
+        return getCustomerStaffPageObjectByWrapper(pageSize, pageIndex, queryWrapper);
     }
 
-    private PageObject<CustomerStaff> getCustomerStaffPageObject(String staffName, Long pageSize, Long pageIndex) {
-        LambdaQueryWrapper<CustomerStaff> queryWrapper = new LambdaQueryWrapper<>();
-//        queryWrapper.eq(CustomerStaff::getIsDeleted, false);
-
-        if (!Objects.isNull(staffName)) {
-            queryWrapper.like(CustomerStaff::getStaffName, staffName);
-        }
-        queryWrapper.orderByDesc(CustomerStaff::getCreateTime);
-
+    /**
+     * 根据条件分页查询
+     */
+    private PageObject<CustomerStaff> getCustomerStaffPageObjectByWrapper(Long pageSize, Long pageIndex, LambdaQueryWrapper<CustomerStaff> queryWrapper) {
         IPage<CustomerStaff> page = new Page<>(pageIndex, pageSize);
         IPage<CustomerStaff> pagedResult = baseMapper.selectPage(page, queryWrapper);
 
-        PageObject<CustomerStaff> pagedObject = new PageObject<CustomerStaff>();
-        pagedObject.buildPage(pagedResult.getRecords(), pagedResult.getTotal(), pagedResult.getCurrent(), pagedResult.getSize());
-
-        return pagedObject;
+        return PageObject.buildPage(pagedResult.getRecords(), pagedResult.getTotal(), pagedResult.getCurrent(), pagedResult.getSize());
     }
 
 
@@ -77,7 +72,7 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
 //            int b = 0;
 //            int c = a / b;  //模拟任务异常
 //            Thread.sleep(5000L);  //模拟执行超时
-            return baseMapper.selectById(staffId);
+            return getById(staffId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
