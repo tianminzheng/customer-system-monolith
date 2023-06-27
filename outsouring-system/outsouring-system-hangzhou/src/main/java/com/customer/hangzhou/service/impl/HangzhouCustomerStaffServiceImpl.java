@@ -3,17 +3,17 @@ package com.customer.hangzhou.service.impl;
 import com.customer.hangzhou.entity.HangzhouCustomerStaff;
 import com.customer.hangzhou.repository.HangzhouCustomerStaffRepository;
 import com.customer.hangzhou.service.HangzhouCustomerStaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class HangzhouCustomerStaffServiceImpl implements HangzhouCustomerStaffService {
 
-    @Autowired
-    HangzhouCustomerStaffRepository customerStaffRepository;
+    @Resource
+    private HangzhouCustomerStaffRepository customerStaffRepository;
 
     @Override
     public List<HangzhouCustomerStaff> findAllCustomerStaffs() {

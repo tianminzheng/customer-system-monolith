@@ -11,14 +11,15 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@Entity
-@Table(name = "hangzhou_customer_staff")
+@Entity //标识为JPA实体类
+@Table(name = "hangzhou_customer_staff")    //指定映射的表名
 public class HangzhouCustomerStaff implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 主键
+     * 主键映射,并设置主键生成策略
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
