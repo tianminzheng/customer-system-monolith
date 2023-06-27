@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 上海客服人员Repository,基于Spring JDBC Template实现
+ */
 @Repository
 public class ShanghaiCustomerStaffRepositoryImpl implements ShanghaiCustomerStaffRepository {
     //定义通用结果集映射

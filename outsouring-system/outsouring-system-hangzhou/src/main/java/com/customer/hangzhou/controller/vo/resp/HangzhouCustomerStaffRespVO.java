@@ -16,5 +16,5 @@ public class HangzhouCustomerStaffRespVO {
     private String gender;
     private String goodAt;
     private String remark;
-    private Date createTime;
+    private Date createdAt;
 }

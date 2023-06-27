@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 北京客服人员Repository,基于原生JDBC实现
+ */
 @Repository
 public class BeijingCustomerStaffRepositoryImpl implements BeijingCustomerStaffRepository {
 
