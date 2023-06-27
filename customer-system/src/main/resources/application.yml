@@ -24,9 +24,9 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
-  # MyBatis-Plus 数据源配置
+  # MyBatis-Plus数据源配置
   datasource:
-    dynamic:
+    dynamic:  #实现动态数据源
       primary: master
       druid:
         initial-size: 3
@@ -37,6 +37,21 @@ spring:
         master:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://127.0.0.1:3306/customer_system?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 12345678
+        beijing:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/customer_beijing?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 12345678
+        shanghai:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/customer_beijing?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+          username: root
+          password: 12345678
+        hangzhou:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/customer_beijing?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
           username: root
           password: 12345678
 mybatis-plus:

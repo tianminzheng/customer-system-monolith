@@ -1,5 +1,6 @@
 package org.geekbang.projects.cs.service.impl;
 
+import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -33,6 +34,7 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
     private CustomerStaffEndpoint customerStaffEndpoint;
 
     @Override
+    @DS("master")   //指定动态数据源
     public PageObject<CustomerStaff> findCustomerStaffs(Long pageSize, Long pageIndex) {
         LambdaQueryWrapper<CustomerStaff> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.orderByDesc(CustomerStaff::getCreateTime);
@@ -79,6 +81,7 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
     }
 
     @Override
+    @DS("master")   //指定动态数据源
     public Boolean createCustomerStaff(CustomerStaff customerStaff) throws BizException {
         return save(customerStaff);
     }
