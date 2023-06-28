@@ -2,12 +2,12 @@ server:
   port: 8001
 
   #Undertow配置
-  undertow:
-    threads:
-      io: 10 #设置IO线程数
-      worker: 200 #设置Worker线程数
-    buffer-size: 1024 #设置缓冲器大小
-    direct-buffers: true #开启直接内存分配
+#  undertow:
+#    threads:
+#      io: 20 #设置IO线程数
+#      worker: 200 #设置Worker线程数
+#    buffer-size: 1024 #设置缓冲器大小
+#    direct-buffers: true #开启直接内存分配
 
 management:
   endpoints:

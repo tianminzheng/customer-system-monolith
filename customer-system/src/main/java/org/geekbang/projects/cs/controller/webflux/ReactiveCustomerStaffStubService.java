@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -33,13 +35,17 @@ public class ReactiveCustomerStaffStubService {
         return customerStaffMono.doOnNext(customerStaff -> {
                     log.info("Create Or Update Customer Staff Step1. Current Thread: {}", Thread.currentThread().getName());
                     CUSTOMER_STAFF_DB.put(customerStaff.getId(), customerStaff);
-                    try {
-                        Thread.sleep(1000L);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                 })
-                .doOnNext(customerStaff -> log.info("Create Or Update Customer Staff Step2. Current Thread: {}", Thread.currentThread().getName()))
+                .doOnNext(customerStaff -> {
+                    log.info("Create Or Update Customer Staff Step2. Current Thread: {}", Thread.currentThread().getName());
+                    customerStaff.setIsDeleted(false);
+                    LocalDateTime now = LocalDateTime.now();
+                    customerStaff.setCreateTime(now);
+                    customerStaff.setUpdateTime(now);
+                })
+                .doOnNext(customerStaff -> log.info("Create Or Update Customer Staff Step3. Current Thread: {}", Thread.currentThread().getName()))
+                .doOnNext(customerStaff -> log.info("Create Or Update Customer Staff Step4. Current Thread: {}", Thread.currentThread().getName()))
+                .doOnNext(customerStaff -> log.info("Create Or Update Customer Staff Step5. Current Thread: {}", Thread.currentThread().getName()))
                 .doOnError(throwable -> log.error("Create Or Update Customer Error. Current Thread: {}", Thread.currentThread().getName(), throwable))
                 .thenEmpty(Mono.empty());
     }
