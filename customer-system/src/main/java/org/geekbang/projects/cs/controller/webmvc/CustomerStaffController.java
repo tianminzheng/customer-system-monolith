@@ -14,6 +14,9 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 传统Web MVC模式的客服人员API
+ */
 @RestController
 @RequestMapping("/customerStaffs")
 public class CustomerStaffController {
