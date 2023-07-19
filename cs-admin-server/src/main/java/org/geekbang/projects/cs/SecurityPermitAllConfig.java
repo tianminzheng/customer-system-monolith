@@ -6,10 +6,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 public class SecurityPermitAllConfig extends WebSecurityConfigurerAdapter {
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //关闭用户登录效果
-        http.authorizeRequests().anyRequest().permitAll()
-                .and().csrf().disable();
+        //禁用鉴权校验
+        http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
     }
 }
