@@ -9,14 +9,15 @@ server:
 #    buffer-size: 1024 #设置缓冲器大小
 #    direct-buffers: true #开启直接内存分配
 
+#Spring Boot Actuator 监控配置
 management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  #开放所有监控Endpoint
   endpoint:
     health:
-      show-details: always
+      show-details: always  #展示Endpoint明细
 
 spring:
   application:
@@ -26,7 +27,7 @@ spring:
     time-zone: Asia/Shanghai
   # MyBatis-Plus数据源配置
   datasource:
-    dynamic:  #实现动态数据源
+    dynamic: #实现动态数据源
       primary: master
       druid:
         initial-size: 3
@@ -80,6 +81,7 @@ xxl:
       logretentiondays: 30
 
 ---
+#指定Admin Server地址,进行监控指标上报
 spring:
   boot:
     admin:
