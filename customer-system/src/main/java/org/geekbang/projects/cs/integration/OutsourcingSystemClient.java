@@ -3,19 +3,22 @@ package org.geekbang.projects.cs.integration;
 import org.geekbang.projects.cs.entity.staff.CustomerStaff;
 import org.geekbang.projects.cs.entity.tenant.OutsourcingSystem;
 import org.geekbang.projects.cs.infrastructure.vo.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 外包客服系统客户端工具类
+ */
 @Component
 public class OutsourcingSystemClient {
 
-    @Autowired
-    RestTemplate restTemplate;
+    @Resource
+    private RestTemplate restTemplate;
 
     public List<CustomerStaff> getCustomerStaffs(OutsourcingSystem outsourcingSystem) {
 
@@ -27,6 +30,7 @@ public class OutsourcingSystemClient {
                 Result.class
         );
 
+        //TODO 执行数据转换操作
         List<CustomerStaff> customerStaffs = (List<CustomerStaff>)result.getBody().getData();
 
         return customerStaffs;

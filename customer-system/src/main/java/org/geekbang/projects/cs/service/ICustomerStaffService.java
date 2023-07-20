@@ -22,7 +22,6 @@ public interface ICustomerStaffService{
 
     Boolean deleteCustomerStaffById(Long staffId);
 
-    //PULL模式：获取OutsourcingSystem中的CustomerStaff
+    //PULL模式：同步OutsourcingSystem中的CustomerStaff
     void syncOutsourcingCustomerStaffsBySystemId(Long systemId);
-
 }
