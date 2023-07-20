@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 public class AddOutsourcingSystemReqVO {
 
     private String systemName;
+    private String systemCode;
     private String description;
     private String systemUrl;
     private String appId;
