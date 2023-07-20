@@ -8,10 +8,10 @@ import com.customer.hangzhou.entity.HangzhouCustomerStaff;
 import com.customer.hangzhou.service.HangzhouCustomerStaffService;
 import lombok.extern.slf4j.Slf4j;
 import org.geekbang.projects.cs.infrastructure.vo.Result;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping("/customerStaffs/hangzhou/")
 public class HangzhouCustomerStaffController {
 
-    @Autowired
+    @Resource
     private HangzhouCustomerStaffService customerStaffService;
 
     @PostMapping("/")
