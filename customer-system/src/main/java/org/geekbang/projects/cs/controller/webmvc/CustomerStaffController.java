@@ -129,12 +129,13 @@ public class CustomerStaffController {
     }
     
     //根据systemId,同步外包系统的客服人员
-    @GetMapping("/sync/{systemId}")
-    public Result<Boolean> syncOutsourcingCustomerStaffsBySystemId(@PathVariable("systemId") Long systemId) {
-        
-        //触发远程调用,获取客服信息并保存
-        customerStaffService.syncOutsourcingCustomerStaffsBySystemId(systemId);
-        
-        return Result.success(true);
-    }
+    //改为通过定时任务触发,无需手动调用
+//    @GetMapping("/sync/{systemId}")
+//    public Result<Boolean> syncOutsourcingCustomerStaffsBySystemId(@PathVariable("systemId") Long systemId) {
+//
+//        //触发远程调用,获取客服信息并保存
+//        customerStaffService.syncOutsourcingCustomerStaffsBySystemId(systemId);
+//
+//        return Result.success(true);
+//    }
 }
