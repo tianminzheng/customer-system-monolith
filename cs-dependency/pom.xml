@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.geekbang.projects</groupId>
+    <groupId>william</groupId>
     <artifactId>cs-dependency</artifactId>
     <version>0.0.1-snapshot</version>
     <packaging>pom</packaging>
