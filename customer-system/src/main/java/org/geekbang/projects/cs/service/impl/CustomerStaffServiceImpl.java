@@ -10,15 +10,15 @@ import org.geekbang.projects.cs.entity.staff.CustomerStaff;
 import org.geekbang.projects.cs.entity.tenant.OutsourcingSystem;
 import org.geekbang.projects.cs.infrastructure.exception.BizException;
 import org.geekbang.projects.cs.infrastructure.page.PageObject;
-import org.geekbang.projects.cs.integration.OutsourcingSystemClient;
 import org.geekbang.projects.cs.mapper.CustomerStaffMapper;
 import org.geekbang.projects.cs.service.ICustomerStaffService;
 import org.geekbang.projects.cs.service.IOutsourcingSystemService;
 import org.geekbang.projects.cs.servicebus.endpoint.CustomerStaffEndpoint;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -31,9 +31,6 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
     private IOutsourcingSystemService outsourcingSystemService;
     
     @Resource
-    private OutsourcingSystemClient outsourcingSystemClient;
-    
-    @Autowired
     private CustomerStaffEndpoint customerStaffEndpoint;
     
     @Override
@@ -121,11 +118,16 @@ public class CustomerStaffServiceImpl extends ServiceImpl<CustomerStaffMapper, C
         }
         
         //根据租户远程获取客服信息
-        List<CustomerStaff> customerStaffs = outsourcingSystemClient.getCustomerStaffs(outsourcingSystem);
+        Collection<CustomerStaff> customerStaffs = customerStaffEndpoint.fetchOutsourcingCustomerStaffs(
+                outsourcingSystem);
         
-        //        List<CustomerStaff> customerStaffs = customerStaffEndpoint.fetchCustomerStaffs(outsourcingSystem);
+        if (CollectionUtils.isEmpty(customerStaffs)) {
+            log.warn("Sync Outsourcing Customer Staffs Empty! systemId: {}", systemId);
+            return;
+        }
         
         //保存客服信息
+        customerStaffs.forEach(x -> x.setSystemId(systemId));
         saveOrUpdateBatch(customerStaffs);
     }
 }

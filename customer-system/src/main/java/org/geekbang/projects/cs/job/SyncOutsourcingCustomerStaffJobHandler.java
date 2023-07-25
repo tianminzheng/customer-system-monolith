@@ -35,8 +35,7 @@ public class SyncOutsourcingCustomerStaffJobHandler {
                 return new ReturnT<>(ReturnT.FAIL_CODE, "Invalid Job Param: " + param);
             }
             Long systemId = Long.parseLong(param);
-            Thread.sleep(1000L * 120);
-//            customerStaffService.syncOutsourcingCustomerStaffsBySystemId(systemId);
+            customerStaffService.syncOutsourcingCustomerStaffsBySystemId(systemId);
             log.info("Sync Outsourcing Customer Staff Job Finished!");
             return ReturnT.SUCCESS;
         } catch (Exception e) {
